@@ -2,7 +2,10 @@ namespace WarriorLibrary;
 
 public abstract class Warrior
 {
-    protected Warrior(uint health, uint armor)
+    private bool _hasAlive;
+    private float _armor;
+
+    protected Warrior(uint health, uint armor, uint strikeCount)
     {
         Health = health;
         Armor = armor;
@@ -15,13 +18,50 @@ public abstract class Warrior
         Armor = 0;
         Damage = SumArmorAndDamage - Armor;
     }
+    
 
     public float Health { get; set; }
-    public float Armor { get; set; }
+
+    public float Armor
+    {
+        get => _armor;
+        set
+        {
+            if (value < 0)
+            {
+                _armor = 0;
+            }
+            else
+            {
+                _armor = value;
+            }
+
+        }
+    }
+
     public float Damage { get; set; }
+
+    public bool HasAlive
+    {
+        get
+        {
+            if (Health <= 0)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+
     public const uint SumArmorAndDamage = 20;
+    public uint StrikeCounter { get; set; }
     public virtual void AddSuperPower(IWarriorSuperPower warriorSuperPower, uint countPower)
     {
         warriorSuperPower.AddSuperPower(this,countPower);
+    }
+
+    public override string ToString()
+    {
+        return $"Health: {Health}, Armor: {Armor}, Damage: {Damage}\n";
     }
 }

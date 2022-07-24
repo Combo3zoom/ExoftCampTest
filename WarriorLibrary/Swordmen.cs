@@ -6,4 +6,5 @@ public class Swordmen:Warrior
     {
         Armor = 10;
     }
+    
 }

@@ -6,4 +6,9 @@ public class Bowman: Warrior
     {
         Armor = 2;
     }
+
+    public override void AddSuperPower(IWarriorSuperPower warriorSuperPower, uint countPower)
+    {
+        base.AddSuperPower(warriorSuperPower, countPower);
+    }
 }

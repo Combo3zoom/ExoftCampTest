@@ -2,7 +2,7 @@ namespace WarriorLibrary;
 
 public static class BattleArena
 {
-    public static Warrior Duel(Warrior firstWarrior, Warrior secondWarrior)
+    public static List<Warrior> Duel(Warrior firstWarrior, Warrior secondWarrior)
     {
         for (int i = 0; firstWarrior.HasAlive && secondWarrior.HasAlive; i++)
         {
@@ -18,9 +18,9 @@ public static class BattleArena
 
         if (firstWarrior.HasAlive)
         {
-            return firstWarrior;
+            return new List<Warrior>{firstWarrior, secondWarrior};
         }
-        return secondWarrior;
+        return new List<Warrior>{secondWarrior, firstWarrior};
     }
 
     private static void Defence(float doneDamage, Warrior defenceWarrior)
@@ -38,6 +38,7 @@ public static class BattleArena
 
     private static float AttackPower(Warrior attackWarrior, Warrior defenceWarrior)
     {
+        attackWarrior.StrikeCounter++;
         if (attackWarrior.Armor <= 0)
         {
             var resultDamage = attackWarrior.Damage - defenceWarrior.StrikeCounter;

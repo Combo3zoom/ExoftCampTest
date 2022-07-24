@@ -2,9 +2,8 @@ namespace WarriorLibrary;
 
 public class Swordmen:Warrior
 {
-    public Swordmen() : base()
+    public Swordmen() : base(100,10)
     {
-        Armor = 10;
     }
     
 }

@@ -5,7 +5,7 @@ public abstract class Warrior
     private bool _hasAlive;
     private float _armor;
 
-    protected Warrior(uint health, uint armor, uint strikeCount)
+    protected Warrior(float health, float armor)
     {
         Health = health;
         Armor = armor;

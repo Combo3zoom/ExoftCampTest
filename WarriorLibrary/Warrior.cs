@@ -16,8 +16,12 @@ public abstract class Warrior
         Damage = SumArmorAndDamage - Armor;
     }
 
-    public uint Health { get; set; }
-    public uint Armor { get; set; }
-    public uint Damage { get; }
+    public float Health { get; set; }
+    public float Armor { get; set; }
+    public float Damage { get; set; }
     public const uint SumArmorAndDamage = 20;
+    public virtual void AddSuperPower(IWarriorSuperPower warriorSuperPower, uint countPower)
+    {
+        warriorSuperPower.AddSuperPower(this,countPower);
+    }
 }

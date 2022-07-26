@@ -56,4 +56,10 @@ public static class TaskLINQ
         }).ToList();
         Console.WriteLine($"sum = {sum}");
     }
+
+    public static void SumOfOddNumbers(int row)
+    {
+        int[,] triangleArray = new int[row, row];
+    }
 }
+

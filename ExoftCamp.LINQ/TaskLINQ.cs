@@ -89,4 +89,36 @@ public static class TaskLINQ
             
         return new List<char>(firstSplitChars);
     }
+
+    public static int SumOfOddNumbers(int row)
+    {
+        List<List<int>> triangleArray = new List<List<int>>();
+        int currentNumber = 1;
+        try
+        {
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        for (int i = 0; i < row; i++)
+        {
+            triangleArray.Add(new List<int>());
+            for (int j = 0; j < row; j++)
+            {
+                if (j <= i )
+                {
+                    triangleArray[i].Add(currentNumber);
+                    currentNumber += 2;
+                }
+                else
+                    triangleArray[i].Add(0);
+            }
+        }
+
+        return triangleArray[row-1].Sum();
+    }
 }
+

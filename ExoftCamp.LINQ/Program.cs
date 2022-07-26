@@ -14,3 +14,5 @@ resultReverseRotate.Select(symbol =>
     Console.Write(symbol);
     return 0;
 }).ToList();
+Console.WriteLine("============Task_5============");
+Console.WriteLine(TaskLINQ.SumOfOddNumbers(2));

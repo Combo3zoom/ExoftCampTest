@@ -26,7 +26,23 @@ public static class TaskLINQ
             return 0;
         }).ToList();
         Console.WriteLine($"The total count is then {numberContainsDigit.Count()}");
+    }
 
-
+    public static void ReduceButGrow(List<int> numbers)
+    {
+        int multiplicationNumber = 1;
+        var index = 0;
+        numbers.Select(number =>
+        {
+            multiplicationNumber *= number;
+            index += 1;
+            if(index != numbers.Count)
+                Console.Write($"{number} * ");
+            else
+                Console.Write(number);
+            
+            return 0;
+        }).ToList();
+        Console.WriteLine($" = {multiplicationNumber}");
     }
 }

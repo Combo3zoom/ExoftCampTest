@@ -45,4 +45,15 @@ public static class TaskLINQ
         }).ToList();
         Console.WriteLine($" = {multiplicationNumber}");
     }
+
+    public static void SquareSum(List<int> numbers)
+    {
+        var sum = 0;
+        numbers.Select(number =>
+        {
+            sum += number * number;
+            return 0;
+        }).ToList();
+        Console.WriteLine($"sum = {sum}");
+    }
 }

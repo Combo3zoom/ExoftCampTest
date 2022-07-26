@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace ExoftCamp.LINQ;
 
@@ -55,6 +56,38 @@ public static class TaskLINQ
             return 0;
         }).ToList();
         Console.WriteLine($"sum = {sum}");
+    }
+
+    public static List<char> ReverseRotate(string value, int chunk)
+    {
+        var splitChars  = value.Chunk(chunk).ToList();
+        var firstSplitChars = CalculateReverseAndRotate(splitChars[0]);
+        var secondSplitChars = CalculateReverseAndRotate(splitChars[1]);
+        return firstSplitChars.Concat(secondSplitChars).ToList();
+
+    }
+
+    private static double CubeSum(char[] chars)
+    {
+        return chars.Select(number => number - '0')
+            .Select(number => Math.Pow(number, 3)).Sum();
+    }
+
+    private static List<char> CalculateReverseAndRotate(char[] firstSplitChars)
+    {
+        if (CubeSum(firstSplitChars) % 2 == 0)
+        {
+            return firstSplitChars.Reverse().ToList();
+        }
+        //LINQ?
+        var firstChar = firstSplitChars[0];
+        for (int i = 0; i < firstSplitChars.Length-1 ; i++)
+        {
+            firstSplitChars[i] = firstSplitChars[i+1];
+        }
+        firstSplitChars[firstSplitChars.Length - 1] = firstChar;
+            
+        return new List<char>(firstSplitChars);
     }
 
     public static int SumOfOddNumbers(int row)

@@ -6,4 +6,8 @@ public class Spearman: BaseWarrior
     {
         Armor = 15;
     }
+    public override string ToString()
+    {
+        return "Spearman - " + base.ToString();
+    }
 }

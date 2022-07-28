@@ -8,6 +8,6 @@ public class Bowman: BaseWarrior
 
     public override string ToString()
     {
-        return "Bowman: " + base.ToString();
+        return "Bowman - " + base.ToString();
     }
 }

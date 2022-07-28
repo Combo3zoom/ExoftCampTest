@@ -1,6 +1,6 @@
 namespace WarriorLibrary;
 
-public class Swordmen:Warrior
+public class Swordmen:BaseWarrior
 {
     public Swordmen() : base(100,10)
     {

@@ -2,7 +2,7 @@
 using System;
 using NUnit.Framework;
 Console.WriteLine("============Task_1============");
-TaskLINQ.CountTheDigit(5750,0);
+Console.WriteLine(TaskLINQ.CountTheDigit(5750,0));
 
 
 Console.WriteLine("============Task_2============");

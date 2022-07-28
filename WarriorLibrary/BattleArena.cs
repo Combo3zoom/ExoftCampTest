@@ -2,52 +2,30 @@ namespace WarriorLibrary;
 
 public static class BattleArena
 {
-    public static List<Warrior> Duel(Warrior firstWarrior, Warrior secondWarrior)
+    public static int roundCounter { get; set; }
+    public static List<BaseWarrior> Duel(BaseWarrior firstBaseWarrior, BaseWarrior secondBaseWarrior)
     {
-        for (int i = 0; firstWarrior.HasAlive && secondWarrior.HasAlive; i++)
+        roundCounter = 0;
+        for (int i = 0; firstBaseWarrior.HasAlive && secondBaseWarrior.HasAlive; i++)
         {
+            ++roundCounter;
+            //Console.WriteLine($"\tRound {++roundCounter}\n{firstBaseWarrior.ToString()}\n{secondBaseWarrior.ToString()}");
             if (i % 2 == 0)
-            {
-                Defence(AttackPower(firstWarrior, secondWarrior), secondWarrior);
-            }
+                secondBaseWarrior.Defence(firstBaseWarrior.AttackPower());
             else
-            {
-                Defence(AttackPower(secondWarrior, firstWarrior), firstWarrior);
-            }
+                firstBaseWarrior.Defence(secondBaseWarrior.AttackPower());
         }
 
-        if (firstWarrior.HasAlive)
-        {
-            return new List<Warrior>{firstWarrior, secondWarrior};
-        }
-        return new List<Warrior>{secondWarrior, firstWarrior};
-    }
-
-    private static void Defence(float doneDamage, Warrior defenceWarrior)
-    {
-        if (defenceWarrior.Armor <= 0)
-        {
-            defenceWarrior.Health -= doneDamage;
-        }
-        else
-        {
-            defenceWarrior.Armor -= doneDamage / 2;
-            defenceWarrior.Health -= doneDamage / 2;
-        }
-    }
-
-    private static float AttackPower(Warrior attackWarrior, Warrior defenceWarrior)
-    {
-        attackWarrior.StrikeCounter++;
-        if (attackWarrior.Armor <= 0)
-        {
-            var resultDamage = attackWarrior.Damage - defenceWarrior.StrikeCounter;
-            if (resultDamage < 1)
-            {
-                return 1;
-            }
-            return resultDamage;
-        }
-        return attackWarrior.Damage;
+        var winner = firstBaseWarrior.HasAlive
+            ? firstBaseWarrior
+            : secondBaseWarrior.HasAlive
+                ? secondBaseWarrior
+                : null;
+        var looser = winner != firstBaseWarrior
+            ? firstBaseWarrior
+            : winner == secondBaseWarrior
+                ? secondBaseWarrior
+                : null;
+        return new List<BaseWarrior>{winner!, looser!};
     }
 }

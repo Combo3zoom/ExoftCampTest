@@ -1,8 +1,12 @@
+using Microsoft.VisualBasic.CompilerServices;
+
 namespace WarriorLibrary;
 
 public abstract class BaseWarrior
 {
     private float _armor;
+    private float _health;
+    private float _damage;
 
     protected BaseWarrior(float health, float armor)
     {
@@ -17,9 +21,13 @@ public abstract class BaseWarrior
         Armor = 0;
         Damage = SumArmorAndDamage - Armor;
     }
-    
 
-    public float Health { get; set; }
+
+    public float Health
+    {
+        get => _health;
+        set => _health = value;
+    }
 
     public float Armor
     {
@@ -33,7 +41,17 @@ public abstract class BaseWarrior
         }
     }
 
-    public float Damage { get; set; }
+    public float Damage
+    {
+        get => _damage;
+        set
+        {
+            if (value <= 1)
+                _damage = 1;
+            else
+                _damage = value;
+        }
+    }
 
     public bool HasAlive => Health > 0;
 
@@ -72,6 +90,32 @@ public abstract class BaseWarrior
 
     public override string ToString()
     {
-        return $"{this.GetType()}\n Health: {Health}, Armor: {Armor}, Damage: {Damage}\n";
+        return $"Health: {Health}, Armor: {Armor}, Damage: {Damage}\n";
+    }
+
+    public static BaseWarrior operator +(BaseWarrior firstBaseWarrior, BaseWarrior secondBaseWarrior)
+    {
+        firstBaseWarrior.Health += secondBaseWarrior.Health;
+        firstBaseWarrior.Armor += secondBaseWarrior.Armor;
+        firstBaseWarrior.Damage += secondBaseWarrior.Damage;
+        return firstBaseWarrior;
+    }
+    public static BaseWarrior operator -(BaseWarrior firstBaseWarrior, BaseWarrior secondBaseWarrior)
+    {
+        firstBaseWarrior.Health -= secondBaseWarrior.Health;
+        firstBaseWarrior.Armor -= secondBaseWarrior.Armor;
+        firstBaseWarrior.Damage -= secondBaseWarrior.Damage;
+        return firstBaseWarrior;
+    }
+    public static bool operator ==(BaseWarrior firstBaseWarrior, BaseWarrior secondBaseWarrior)
+    {
+        return firstBaseWarrior.Health == secondBaseWarrior.Health && firstBaseWarrior.Armor == secondBaseWarrior.Armor
+                                                                   && firstBaseWarrior.Damage == secondBaseWarrior.Damage;
+    }
+
+    public static bool operator !=(BaseWarrior firstBaseWarrior, BaseWarrior secondBaseWarrior)
+    {
+        return !(firstBaseWarrior.Health == secondBaseWarrior.Health && firstBaseWarrior.Armor == secondBaseWarrior.Armor
+                                                                   && firstBaseWarrior.Damage == secondBaseWarrior.Damage);
     }
 }

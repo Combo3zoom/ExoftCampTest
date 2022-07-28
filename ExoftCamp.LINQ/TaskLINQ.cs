@@ -5,7 +5,7 @@ namespace ExoftCamp.LINQ;
 
 public static class TaskLINQ
 {
-    public static void CountTheDigit(int count, int digit)
+    public static int CountTheDigit(int count, int digit)
     {
         var squareAllNumbers = Enumerable.Range(0, count+1).Select(number=>number*number).ToList();
         
@@ -17,37 +17,26 @@ public static class TaskLINQ
                     return true;
                 number /= 10;
             }
-
             return false;
-        }).ToList(); 
-        Console.Write($"We are using the digit {digit} in: ");
+        }).ToList();
         numberContainsDigit.Select(number =>
         {
-            Console.Write($"{number}, ");
             return 0;
         }).ToList();
-        Console.WriteLine($"The total count is then {numberContainsDigit.Count()}");
+        return numberContainsDigit.Count;
     }
 
-    public static void ReduceButGrow(List<int> numbers)
+    public static void ReduceButGrow(int[] numbers)
     {
         int multiplicationNumber = 1;
-        var index = 0;
         numbers.Select(number =>
         {
             multiplicationNumber *= number;
-            index += 1;
-            if(index != numbers.Count)
-                Console.Write($"{number} * ");
-            else
-                Console.Write(number);
-            
             return 0;
         }).ToList();
-        Console.WriteLine($" = {multiplicationNumber}");
     }
 
-    public static void SquareSum(List<int> numbers)
+    public static int SquareSum(List<int> numbers)
     {
         var sum = 0;
         numbers.Select(number =>
@@ -55,15 +44,29 @@ public static class TaskLINQ
             sum += number * number;
             return 0;
         }).ToList();
-        Console.WriteLine($"sum = {sum}");
+        return sum;
     }
 
-    public static List<char> ReverseRotate(string value, int chunk)
+    public static string ReverseRotate(string value, int chunk)
     {
+        if (chunk <= 0 || value == "" || chunk >= value.Length)
+            return "";
         var splitChars  = value.Chunk(chunk).ToList();
-        var firstSplitChars = CalculateReverseAndRotate(splitChars[0]);
-        var secondSplitChars = CalculateReverseAndRotate(splitChars[1]);
-        return firstSplitChars.Concat(secondSplitChars).ToList();
+        var t = int.Parse(splitChars[0][0].ToString());
+        var resultConcatChars = new List<char>();
+        foreach (var chars in splitChars)
+        {
+            if(chars.Length!=chunk)
+                continue;
+            resultConcatChars = resultConcatChars.Concat(CalculateReverseAndRotate(chars)).ToList();
+        }
+        var resultstr = "";
+        resultConcatChars.Select(symbol =>
+        {
+            resultstr += symbol;
+            return 0;
+        }).ToList();
+        return resultstr;
 
     }
 
@@ -90,19 +93,10 @@ public static class TaskLINQ
         return new List<char>(firstSplitChars);
     }
 
-    public static int SumOfOddNumbers(int row)
+    public static long SumOfOddNumbers(long row)
     {
         List<List<int>> triangleArray = new List<List<int>>();
         int currentNumber = 1;
-        try
-        {
-
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
         for (int i = 0; i < row; i++)
         {
             triangleArray.Add(new List<int>());
@@ -118,7 +112,7 @@ public static class TaskLINQ
             }
         }
 
-        return triangleArray[row-1].Sum();
+        return triangleArray[(int) (row-1)].Sum();
     }
 }
 

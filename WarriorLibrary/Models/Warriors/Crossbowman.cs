@@ -1,6 +1,6 @@
 namespace WarriorLibrary;
 
-public class Crossbowman: Warrior
+public class Crossbowman: BaseWarrior
 {
     public Crossbowman() : base(100,6)
     {

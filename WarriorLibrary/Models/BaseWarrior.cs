@@ -107,15 +107,5 @@ public abstract class BaseWarrior
         firstBaseWarrior.Damage -= secondBaseWarrior.Damage;
         return firstBaseWarrior;
     }
-    public static bool operator ==(BaseWarrior firstBaseWarrior, BaseWarrior secondBaseWarrior)
-    {
-        return firstBaseWarrior.Health == secondBaseWarrior.Health && firstBaseWarrior.Armor == secondBaseWarrior.Armor
-                                                                   && firstBaseWarrior.Damage == secondBaseWarrior.Damage;
-    }
-
-    public static bool operator !=(BaseWarrior firstBaseWarrior, BaseWarrior secondBaseWarrior)
-    {
-        return !(firstBaseWarrior.Health == secondBaseWarrior.Health && firstBaseWarrior.Armor == secondBaseWarrior.Armor
-                                                                   && firstBaseWarrior.Damage == secondBaseWarrior.Damage);
-    }
 }
+

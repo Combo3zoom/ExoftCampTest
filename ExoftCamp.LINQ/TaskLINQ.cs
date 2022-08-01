@@ -13,7 +13,7 @@ public static class TaskLINQ
         {
             while (number != 0)
             {
-                if (number % 10 == digit)
+                if (number == digit || number % 10 == digit)
                     return true;
                 number /= 10;
             }

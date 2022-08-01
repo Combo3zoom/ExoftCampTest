@@ -23,7 +23,7 @@ public static class BattleArena
                 : null;
         var looser = winner != firstBaseWarrior
             ? firstBaseWarrior
-            : winner == secondBaseWarrior
+            : winner != secondBaseWarrior
                 ? secondBaseWarrior
                 : null;
         return new List<BaseWarrior>{winner!, looser!};

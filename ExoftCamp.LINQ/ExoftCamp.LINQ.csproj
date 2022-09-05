@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\WarriorLibrary\WarriorLibrary.csproj" />
+      <PackageReference Include="NUnit" Version="3.13.3" />
     </ItemGroup>
 
 </Project>
